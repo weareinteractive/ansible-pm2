@@ -1,0 +1,8 @@
+---
+
+- name: Starting apps
+  command: pm2 start {{ item }}
+  with_items: pm2_apps
+  tags:
+    - web
+    - pm2

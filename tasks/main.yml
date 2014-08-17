@@ -1,0 +1,6 @@
+---
+
+- include: install.yml
+- include: reset.yml
+- include: start.yml
+- include: service.yml

@@ -1,0 +1,29 @@
+---
+
+- name: Install packages
+  npm: >
+    name={{ item }}
+    state=latest
+    global=yes
+  notify: restart pm2
+  with_items:
+    - pm2
+  tags:
+    - web
+    - pm2
+
+# @todo: this just doesn't run through
+#- name: Updating pm2
+#  command: >
+#    pm2 updatePM2
+#  ignore_errors: yes
+#  tags:
+#    - web
+#    - pm2
+
+- name: installing startup script
+  command: >
+    pm2 -s startup {{ pm2_startup }}
+  tags:
+    - web
+    - pm2

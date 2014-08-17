@@ -1,0 +1,16 @@
+---
+# For more information about default variables see:
+# http://www.ansibleworks.com/docs/playbooks_variables.html#id26
+#
+# pm2_apps:
+#   - /var/www/myapp/pm2.json
+#
+
+# list of paths to JSON app declarations
+pm2_apps: []
+# startup system
+pm2_startup: ubuntu
+# start on boot
+pm2_service_enabled: yes
+# current state: started, stopped
+pm2_service_state: started

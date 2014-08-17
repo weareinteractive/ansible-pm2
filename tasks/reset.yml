@@ -1,0 +1,8 @@
+---
+
+- name: Deleting all apps
+  command: pm2 -s delete all
+  ignore_errors: yes
+  tags:
+    - web
+    - pm2

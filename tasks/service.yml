@@ -1,0 +1,10 @@
+---
+
+- name: Configuring service
+  service: >
+    name=pm2-init.sh
+    state={{ pm2_service_state }}
+    enabled={{ pm2_service_enabled }}
+  tags:
+    - web
+    - pm2

@@ -1,0 +1,7 @@
+---
+
+- hosts: all
+  roles:
+    - franklinkim.pm2
+  vars:
+    pm2_startup: ubuntu

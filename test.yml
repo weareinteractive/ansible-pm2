@@ -2,6 +2,9 @@
 
 - hosts: all
   roles:
-    - franklinkim.pm2
+    - franklinkim.apt
+    - franklinkim.nodejs
   vars:
+    apt_repositories:
+      - 'ppa:chris-lea/node.js'
     pm2_startup: ubuntu

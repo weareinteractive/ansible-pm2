@@ -6,8 +6,8 @@
 > `pm2` is an [ansible](http://www.ansible.com) role which: 
 > 
 > * installs pm2
-> * deletes all apps
-> * starts app list
+> * manages JSON apps
+> * configures service
 
 ## Installation
 
@@ -29,25 +29,33 @@ Using `git`:
 $ git clone https://github.com/weareinteractive/ansible-pm2.git
 ```
 
+## Dependencies
+
+* [franklinkim.nodejs](https://github.com/weareinteractive/ansible-nodejs)
+
 ## Variables
 
-Here is a list of all the default variables for this role, which are also available in defaults/main.yml.
+Here is a list of all the default variables for this role, which are also available in `defaults/main.yml`.
 
 ```
 # pm2_apps:
 #   - /var/www/myapp/pm2.json
 #
 
-# startup system
-pm2_startup: ubuntu
 # list of paths to JSON app declarations
 pm2_apps: []
+# startup system
+pm2_startup: ubuntu
+# start on boot
+pm2_service_enabled: yes
+# current state: started, stopped
+pm2_service_state: started
 ```
 
 ## Handlers
 
-* `reload pm2` 
 * `restart pm2` 
+
 
 ## Example playbook
 

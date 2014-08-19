@@ -2,5 +2,5 @@
 
 - include: install.yml
 - include: reset.yml
-- include: start.yml
+- include: manage.yml
 - include: service.yml

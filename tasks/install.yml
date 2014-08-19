@@ -3,7 +3,7 @@
 - name: Install packages
   npm: >
     name={{ item }}
-    state=latest
+    state=present
     global=yes
   notify: restart pm2
   with_items:
@@ -11,6 +11,7 @@
   tags:
     - web
     - pm2
+    - install
 
 # @todo: this just doesn't run through
 #- name: Updating pm2
@@ -27,3 +28,4 @@
   tags:
     - web
     - pm2
+    - install

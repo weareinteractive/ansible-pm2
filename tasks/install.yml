@@ -1,10 +1,7 @@
 ---
 
 - name: Install packages
-  npm: >
-    name={{ item }}
-    state=present
-    global=yes
+  command: npm install -g pm2 --unsafe-perm
   notify: restart pm2
   with_items:
     - pm2
@@ -12,15 +9,6 @@
     - web
     - pm2
     - install
-
-# @todo: this just doesn't run through
-#- name: Updating pm2
-#  command: >
-#    pm2 updatePM2
-#  ignore_errors: yes
-#  tags:
-#    - web
-#    - pm2
 
 - name: installing startup script
   command: >

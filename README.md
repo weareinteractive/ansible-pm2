@@ -50,6 +50,8 @@ pm2_startup: ubuntu
 pm2_service_enabled: yes
 # current state: started, stopped
 pm2_service_state: started
+# version
+pm2_version: latest
 ```
 
 ## Handlers

@@ -1,7 +1,7 @@
 ---
 
 - name: Install packages
-  command: npm install -g pm2 --unsafe-perm
+  command: npm install -g pm2@{{ pm2_version }} --unsafe-perm
   notify: restart pm2
   with_items:
     - pm2

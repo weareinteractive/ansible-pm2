@@ -1,9 +1,10 @@
 ---
 
 - hosts: all
+  sudo: yes
   roles:
     - franklinkim.apt
-    - franklinkim.nodejs
+    - franklinkim.pm2
   vars:
     apt_repositories:
       - 'ppa:chris-lea/node.js'

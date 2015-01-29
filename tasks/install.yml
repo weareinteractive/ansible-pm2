@@ -8,7 +8,7 @@
   tags:
     - web
     - pm2
-    - install
+    - pm2-install
 
 - name: installing startup script
   command: >
@@ -16,4 +16,4 @@
   tags:
     - web
     - pm2
-    - install
+    - pm2-install

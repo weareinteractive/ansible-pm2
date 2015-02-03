@@ -3,8 +3,8 @@
 [![Build Status](https://travis-ci.org/weareinteractive/ansible-pm2.png?branch=master)](https://travis-ci.org/weareinteractive/ansible-pm2)
 [![Stories in Ready](https://badge.waffle.io/weareinteractive/ansible-pm2.svg?label=ready&title=Ready)](http://waffle.io/weareinteractive/ansible-pm2)
 
-> `pm2` is an [ansible](http://www.ansible.com) role which: 
-> 
+> `pm2` is an [ansible](http://www.ansible.com) role which:
+>
 > * installs pm2
 > * manages JSON apps
 > * configures service
@@ -33,6 +33,23 @@ $ git clone https://github.com/weareinteractive/ansible-pm2.git
 
 * [franklinkim.nodejs](https://github.com/weareinteractive/ansible-nodejs)
 
+```
+dependencies:
+  - role: franklinkim.nodejs
+    tags:
+      - dependencies
+      - pm2-dependencies
+      - pm2-nodejs-dependency
+```
+
+
+Dependencies are tagged, so if you wish skip them or just one of them use i.e.:
+
+```
+$ ansible-playbook playbook.yml --skip-tags "dependencies"
+```
+
+
 ## Variables
 
 Here is a list of all the default variables for this role, which are also available in `defaults/main.yml`.
@@ -56,19 +73,21 @@ pm2_version: latest
 
 ## Handlers
 
-* `restart pm2` 
+* `restart pm2`
 
 
 ## Example playbook
 
 ```
-- host: all
-  roles: 
+- hosts: all
+  sudo: yes
+  roles:
+    - franklinkim.apt
     - franklinkim.pm2
   vars:
+    apt_repositories:
+      - 'ppa:chris-lea/node.js'
     pm2_startup: ubuntu
-    pm2_apps:
-      - /var/www/myapp/pm2.json
 ```
 
 ## Testing

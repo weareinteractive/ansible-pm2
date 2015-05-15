@@ -5,3 +5,4 @@
 
 - name: restart pm2
   service: name=pm2-init.sh state=restarted
+  when: pm2_service_state != 'stopped'

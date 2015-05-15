@@ -17,38 +17,22 @@ Using `ansible-galaxy`:
 $ ansible-galaxy install franklinkim.pm2
 ```
 
-Using `arm` ([Ansible Role Manager](https://github.com/mirskytech/ansible-role-manager/)):
+Using `requirements.yml`:
 
 ```
-$ arm install franklinkim.pm2
+- src: franklinkim.pm2
 ```
 
 Using `git`:
 
 ```
-$ git clone https://github.com/weareinteractive/ansible-pm2.git
+$ git clone https://github.com/weareinteractive/ansible-pm2.git franklinkim.pm2
 ```
 
 ## Dependencies
 
-* [franklinkim.nodejs](https://github.com/weareinteractive/ansible-nodejs)
-
-```
-dependencies:
-  - role: franklinkim.nodejs
-    tags:
-      - dependencies
-      - pm2-dependencies
-      - pm2-nodejs-dependency
-```
-
-
-Dependencies are tagged, so if you wish skip them or just one of them use i.e.:
-
-```
-$ ansible-playbook playbook.yml --skip-tags "dependencies"
-```
-
+* Ansible >= 1.9
+* installed nodejs i.e. with [franklinkim.nodejs](https://github.com/weareinteractive/ansible-nodejs)
 
 ## Variables
 
@@ -68,7 +52,7 @@ pm2_service_enabled: yes
 # current state: started, stopped
 pm2_service_state: started
 # version
-pm2_version: latest
+pm2_version:
 ```
 
 ## Handlers
@@ -82,11 +66,9 @@ pm2_version: latest
 - hosts: all
   sudo: yes
   roles:
-    - franklinkim.apt
+    - franklinkim.nodejs
     - franklinkim.pm2
   vars:
-    apt_repositories:
-      - 'ppa:chris-lea/node.js'
     pm2_startup: ubuntu
 ```
 

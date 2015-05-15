@@ -1,6 +1,22 @@
 ---
 
 - include: install.yml
-- include: reset.yml
+  tags:
+    - web
+    - pm2
+    - install
+    - pm2-install
+
 - include: manage.yml
+  tags:
+    - web
+    - pm2
+    - manage
+    - pm2-manage
+
 - include: service.yml
+  tags:
+    - web
+    - pm2
+    - service
+    - pm2-service

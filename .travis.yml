@@ -7,7 +7,6 @@ before_install:
  - sudo apt-get install -qq python-apt python-pycurl
 install:
   - pip install ansible
-  - ansible-galaxy install franklinkim.apt
   - ansible-galaxy install franklinkim.nodejs
 script:
   - echo localhost > inventory

@@ -1,19 +1,12 @@
 ---
 
 - name: Install packages
-  command: npm install -g pm2@{{ pm2_version }}
+  npm:
+    name: pm2
+    global: yes
+    version: "{{ pm2_version | default(omit) }}"
   notify: restart pm2
-  with_items:
-    - pm2
-  tags:
-    - web
-    - pm2
-    - pm2-install
 
 - name: installing startup script
   command: >
     pm2 startup {{ pm2_startup }}
-  tags:
-    - web
-    - pm2
-    - pm2-install

@@ -2,4 +2,4 @@
 *~
 !.git*
 !.travis.yml
-vagrant_*
+!.editorconfig

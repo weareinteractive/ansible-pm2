@@ -1,9 +1,11 @@
 ---
 
+- name: Deleting all apps
+  command: >
+    pm2 delete all
+  ignore_errors: yes
+
 - name: Starting apps
-  command: pm2 start {{ item }}
+  command: >
+    pm2 start {{ item }}
   with_items: pm2_apps
-  tags:
-    - web
-    - pm2
-    - pm2-manage

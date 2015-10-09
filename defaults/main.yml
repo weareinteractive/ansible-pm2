@@ -3,7 +3,10 @@
 # http://www.ansibleworks.com/docs/playbooks_variables.html#id26
 #
 # pm2_apps:
-#   - /var/www/myapp/pm2.json
+#   - 
+#     path: /var/www/myapp
+#     env: production
+#     run: pm2.json // you can also run a .js file like server.js
 #
 
 # list of paths to JSON app declarations

@@ -6,6 +6,9 @@
   ignore_errors: yes
 
 - name: Starting apps
-  command: >
-    pm2 start {{ item }}
+  environment:
+    NODE_ENV: "{{ item.env }}"
+  command: "pm2 start {{ item.run }}"
+  args:
+    chdir: "{{ item.path }}"
   with_items: pm2_apps

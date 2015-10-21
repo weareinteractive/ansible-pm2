@@ -10,4 +10,4 @@ ansible-galaxy install franklinkim.nodejs
 ln -s $(pwd) /usr/share/ansible/roles/$ROLE_NAME
 
 echo 'running playbook'
-ansible-playbook -vvvv -i 'localhost,' -c local --extra-vars 'pwd=$(pwd)' $(pwd)/tests/main.yml
+ansible-playbook -vvvv -i 'localhost,' -e "pwd=$(pwd)" -c local $(pwd)/tests/main.yml

@@ -6,8 +6,6 @@
   register: command_result
   failed_when: "'[ERROR]' in command_result.stderr"
 
-- debug: var=pwd
-
 - name: Starting apps
   environment: "{{ item.env | default({}) }}"
   command: "pm2 start {{ item.run }} {{ item.args | default('') }}"

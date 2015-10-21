@@ -1,0 +1,17 @@
+---
+
+- hosts: all
+  sudo: yes
+  roles:
+    - franklinkim.nodejs
+    - franklinkim.pm2
+  vars:
+    pm2_apps:
+      - run: apps.json
+        path: "{{ pwd }}/tests"
+      - run: console_error.js
+        args: --name console_error
+        path: "{{ pwd }}/tests/apps"
+        env:
+          NODE_ENV: dev
+    pm2_startup: ubuntu

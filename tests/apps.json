@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "name"   : "console_log",
+      "script" : "apps/console_log.js",
+      "env"    : {
+        "NODE_ENV": "production"
+      }
+    }
+  ]
+}

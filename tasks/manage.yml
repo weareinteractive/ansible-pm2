@@ -3,9 +3,12 @@
 - name: Deleting all apps
   command: >
     pm2 delete all
-  ignore_errors: yes
+  register: command_result
+  failed_when: "'[ERROR]' in command_result.stderr"
 
 - name: Starting apps
-  command: >
-    pm2 start {{ item }}
+  environment: "{{ item.env | default({}) }}"
+  command: "pm2 start {{ item.run }} {{ item.args | default('') }}"
+  args:
+    chdir: "{{ item.path | default(omit) }}"
   with_items: pm2_apps

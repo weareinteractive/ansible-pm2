@@ -1,0 +1,16 @@
+---
+
+galaxy_name: franklinkim.pm2
+github_user: weareinteractive
+github_name: ansible-pm2
+badges: |
+  [![Build Status](https://img.shields.io/travis/weareinteractive/ansible-pm2.svg)](https://travis-ci.org/weareinteractive/ansible-pm2)
+  [![Galaxy](http://img.shields.io/badge/galaxy-franklinkim.pm2-blue.svg)](https://galaxy.ansible.com/list#/roles/1410)
+  [![GitHub Tags](https://img.shields.io/github/tag/weareinteractive/ansible-pm2.svg)](https://github.com/weareinteractive/ansible-pm2)
+  [![GitHub Stars](https://img.shields.io/github/stars/weareinteractive/ansible-pm2.svg)](https://github.com/weareinteractive/ansible-pm2)
+description: |
+  > * installs pm2
+  > * manages JSON apps
+  > * configures service
+after_dependencies: |
+  * installed nodejs i.e. with [franklinkim.nodejs](https://github.com/weareinteractive/ansible-nodejs)

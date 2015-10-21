@@ -1,9 +1,0 @@
----
-
-- hosts: all
-  sudo: yes
-  roles:
-    - franklinkim.nodejs
-    - franklinkim.pm2
-  vars:
-    pm2_startup: ubuntu

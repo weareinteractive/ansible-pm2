@@ -1,15 +1,10 @@
 ---
 
-language: python
-python: "2.7"
-before_install:
- - sudo apt-get update -qq
- - sudo apt-get install -qq python-apt python-pycurl
+language: ruby
+sudo: required
+services:
+  - docker
 install:
-  - pip install ansible
-  - ansible-galaxy install franklinkim.nodejs
+  - docker pull franklinkim/ansible:ubuntu-trusty
 script:
-  - echo localhost > inventory
-  - ln -s ansible-pm2 ../franklinkim.pm2
-  - ansible-playbook --syntax-check -i inventory test.yml
-  - ansible-playbook -i inventory test.yml --connection=local --sudo -vvvv
+  - docker run -v $(pwd):/opt/ansible franklinkim/ansible:ubuntu-trusty tests/run.sh

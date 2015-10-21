@@ -16,7 +16,10 @@ Vagrant.configure("2") do |config|
   # View the documentation for the provider you're using for more
   # information on available options.
   config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "test.yml"
+    ansible.playbook = "tests/main.yml"
+    ansible.extra_vars = {
+      pwd: "/vagrant"
+    }
     ansible.verbose = 'vv'
     ansible.sudo = true
   end

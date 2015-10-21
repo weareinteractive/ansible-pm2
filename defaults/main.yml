@@ -1,12 +1,11 @@
 ---
-# For more information about default variables see:
-# http://www.ansibleworks.com/docs/playbooks_variables.html#id26
 #
 # pm2_apps:
-#   - 
-#     path: /var/www/myapp
-#     env: production
-#     run: pm2.json // you can also run a .js file like server.js
+#   - run: pm2.json               # you can also run a .js file like app.js
+#     args: --name console_error  # optional arguements to pass i.e. to app.js
+#     path: /var/www/myapp        # optional chdir path
+#     env:                        # optional environment settings
+#       NODE_ENV: production
 #
 
 # list of paths to JSON app declarations

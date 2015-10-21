@@ -1,7 +1,9 @@
 # Ansible Pm2 Role
 
-[![Build Status](https://travis-ci.org/weareinteractive/ansible-pm2.png?branch=master)](https://travis-ci.org/weareinteractive/ansible-pm2)
-[![Stories in Ready](https://badge.waffle.io/weareinteractive/ansible-pm2.svg?label=ready&title=Ready)](http://waffle.io/weareinteractive/ansible-pm2)
+[![Build Status](https://img.shields.io/travis/weareinteractive/ansible-pm2.svg)](https://travis-ci.org/weareinteractive/ansible-pm2)
+[![Galaxy](http://img.shields.io/badge/galaxy-franklinkim.pm2-blue.svg)](https://galaxy.ansible.com/list#/roles/1410)
+[![GitHub Tags](https://img.shields.io/github/tag/weareinteractive/ansible-pm2.svg)](https://github.com/weareinteractive/ansible-pm2)
+[![GitHub Stars](https://img.shields.io/github/stars/weareinteractive/ansible-pm2.svg)](https://github.com/weareinteractive/ansible-pm2)
 
 > `pm2` is an [ansible](http://www.ansible.com) role which:
 >

@@ -54,6 +54,8 @@ Here is a list of all the default variables for this role, which are also availa
 pm2_apps: []
 # startup system
 pm2_startup: ubuntu
+# service name for startup system
+pm2_service_name: pm2-init.sh
 # start on boot
 pm2_service_enabled: yes
 # current state: started, stopped
@@ -71,7 +73,7 @@ These are the handlers that are defined in `handlers/main.yml`.
 ---
 
 - name: restart pm2
-  service: name=pm2-init.sh state=restarted
+  service: name={{ pm2_service_name }} state=restarted
   when: pm2_service_state != 'stopped'
 
 ```

@@ -12,6 +12,8 @@
 pm2_apps: []
 # startup system
 pm2_startup: ubuntu
+# service name for startup system
+pm2_service_name: pm2-init.sh
 # start on boot
 pm2_service_enabled: yes
 # current state: started, stopped

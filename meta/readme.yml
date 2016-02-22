@@ -1,11 +1,10 @@
 ---
-
-galaxy_name: franklinkim.pm2
+galaxy_name: weareinteractive.pm2
 github_user: weareinteractive
 github_name: ansible-pm2
 badges: |
   [![Build Status](https://img.shields.io/travis/weareinteractive/ansible-pm2.svg)](https://travis-ci.org/weareinteractive/ansible-pm2)
-  [![Galaxy](http://img.shields.io/badge/galaxy-franklinkim.pm2-blue.svg)](https://galaxy.ansible.com/list#/roles/1410)
+  [![Galaxy](http://img.shields.io/badge/galaxy-weareinteractive.pm2-blue.svg)](https://galaxy.ansible.com/weareinteractive/pm2)
   [![GitHub Tags](https://img.shields.io/github/tag/weareinteractive/ansible-pm2.svg)](https://github.com/weareinteractive/ansible-pm2)
   [![GitHub Stars](https://img.shields.io/github/stars/weareinteractive/ansible-pm2.svg)](https://github.com/weareinteractive/ansible-pm2)
 description: |
@@ -13,4 +12,8 @@ description: |
   > * manages JSON apps
   > * configures service
 after_dependencies: |
-  * installed nodejs i.e. with [franklinkim.nodejs](https://github.com/weareinteractive/ansible-nodejs)
+  * installed nodejs i.e. with [weareinteractive.nodejs](https://github.com/weareinteractive/ansible-nodejs)
+
+  **Note:**
+
+  > Since Ansible Galaxy supports [organization](https://www.ansible.com/blog/ansible-galaxy-2-release) now, this role has moved from `franklinkim.pm2` to `weareinteractive.pm2`!

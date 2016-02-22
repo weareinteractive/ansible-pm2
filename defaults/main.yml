@@ -1,5 +1,4 @@
 ---
-#
 # pm2_apps:
 #   - run: pm2.json               # you can also run a .js file like app.js
 #     args: --name console_error  # optional arguements to pass i.e. to app.js

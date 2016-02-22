@@ -2,6 +2,6 @@
 
 - name: Configuring service
   service:
-    name: pm2-init.sh
+    name: "{{ pm2_service_name }}"
     state: "{{ pm2_service_state }}"
     enabled: "{{ pm2_service_enabled }}"

@@ -1,17 +1,26 @@
 ---
 
 - hosts: all
-  sudo: yes
+  # pre_tasks for installing dependencies for running the tests within docker
+  pre_tasks:
+    - name: Downloading install script
+      get_url:
+        url: https://deb.nodesource.com/setup_5.x
+        dest: /tmp/setup_nodejs
+        mode: "0777"
+    - name: Installing sources
+      command: /tmp/setup_nodejs
+    - name: Installing packages
+      action: "{{ ansible_pkg_mgr }} pkg=nodejs state=present"
   roles:
-    - franklinkim.nodejs
-    - franklinkim.pm2
+    - weareinteractive.pm2
   vars:
     pm2_apps:
       - run: apps.json
-        path: "{{ pwd }}/tests"
+        path: "/etc/ansible/roles/weareinteractive.pm2/tests"
       - run: console_error.js
         args: --name console_error
-        path: "{{ pwd }}/tests/apps"
+        path: "/etc/ansible/roles/weareinteractive.pm2/tests/apps"
         env:
           NODE_ENV: dev
     pm2_startup: ubuntu

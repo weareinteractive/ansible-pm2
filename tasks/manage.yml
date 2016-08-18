@@ -11,4 +11,4 @@
   command: "pm2 start {{ item.run }} {{ item.args | default('') }}"
   args:
     chdir: "{{ item.path | default(omit) }}"
-  with_items: pm2_apps
+  with_items: "{{ pm2_apps }}"

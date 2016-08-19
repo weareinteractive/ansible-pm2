@@ -1,0 +1,2 @@
+test_nodejs_url: https://deb.nodesource.com/setup_5.x
+test_pm2_startup: ubuntu

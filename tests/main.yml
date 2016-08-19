@@ -3,7 +3,7 @@
 - hosts: all
   # pre_tasks for installing dependencies for running the tests within docker
   pre_tasks:
-    - include_vars: "vars/{{ ansible_distribution }}.yml"
+    - include_vars: "vars/{{ ansible_os_family }}.yml"
     - get_url:
         url: "{{ test_nodejs_url }}"
         dest: /tmp/setup_nodejs

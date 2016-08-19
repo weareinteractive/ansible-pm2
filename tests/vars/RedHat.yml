@@ -1,2 +1,3 @@
 test_nodejs_url: https://rpm.nodesource.com/setup_5.x
+test_pm2_service_name: pm2-init.sh
 test_pm2_startup: centos

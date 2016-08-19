@@ -7,6 +7,5 @@
     version: "{{ pm2_version | default(omit) }}"
   notify: restart pm2
 
-- name: installing startup script
-  command: >
-    pm2 startup {{ pm2_startup }}
+- name: Installing startup script
+  command: "pm2 startup {{ pm2_startup }}"

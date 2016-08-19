@@ -3,16 +3,15 @@
 - hosts: all
   # pre_tasks for installing dependencies for running the tests within docker
   pre_tasks:
-    - include_vars: "vars/{{ ansible_os_family }}.yml"
-    - get_url:
-        url: "{{ test_nodejs_url }}"
+    - name: Downloading install script
+      get_url:
+        url: https://deb.nodesource.com/setup_5.x
         dest: /tmp/setup_nodejs
         mode: "0777"
-    - command: /tmp/setup_nodejs
-    - action: "{{ ansible_pkg_mgr }} pkg=nodejs state=present"
-    - file:
-        path: /run/lock/subsys
-        state: directory
+    - name: Installing sources
+      command: /tmp/setup_nodejs
+    - name: Installing packages
+      action: "{{ ansible_pkg_mgr }} pkg=nodejs state=present"
   roles:
     - weareinteractive.pm2
   vars:
@@ -24,5 +23,4 @@
         path: "/etc/ansible/roles/weareinteractive.pm2/tests/apps"
         env:
           NODE_ENV: dev
-    pm2_service_name: "{{ test_pm2_service_name }}"
-    pm2_startup: "{{ test_pm2_startup }}"
+    pm2_startup: ubuntu

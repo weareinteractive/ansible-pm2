@@ -56,8 +56,6 @@ Here is a list of all the default variables for this role, which are also availa
 
 # list of paths to JSON app declarations
 pm2_apps: []
-# startup system
-pm2_startup: ubuntu
 # service name for startup system
 pm2_service_name: pm2-init.sh
 # start on boot
@@ -82,6 +80,12 @@ These are the handlers that are defined in `handlers/main.yml`.
     state: restarted
   when: pm2_service_state != 'stopped'
 
+- name: reload pm2
+  service:
+    name: "{{ pm2_service_name }}"
+    state: reloaded
+  when: pm2_service_state != 'stopped'
+
 ```
 
 
@@ -97,7 +101,7 @@ This is an example playbook:
   pre_tasks:
     - name: Downloading install script
       get_url:
-        url: https://deb.nodesource.com/setup_5.x
+        url: http://deb.nodesource.com/setup_5.x
         dest: /tmp/setup_nodejs
         mode: "0777"
     - name: Installing sources
@@ -129,7 +133,7 @@ $ make test
 ```
 
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests and examples for any new or changed functionality.
+In lieu of a formal style guide, take care to maintain the existing coding style. Add unit tests and examples for any new or changed functionality.
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)

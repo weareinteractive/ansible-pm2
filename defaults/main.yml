@@ -9,8 +9,6 @@
 
 # list of paths to JSON app declarations
 pm2_apps: []
-# startup system
-pm2_startup: ubuntu
 # service name for startup system
 pm2_service_name: pm2-init.sh
 # start on boot

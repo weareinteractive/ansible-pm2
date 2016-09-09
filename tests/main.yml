@@ -5,7 +5,7 @@
   pre_tasks:
     - name: Downloading install script
       get_url:
-        url: https://deb.nodesource.com/setup_5.x
+        url: http://deb.nodesource.com/setup_5.x
         dest: /tmp/setup_nodejs
         mode: "0777"
     - name: Installing sources

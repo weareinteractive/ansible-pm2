@@ -8,3 +8,4 @@
 
 - name: Installing startup script
   command: "pm2 startup"
+  become: yes

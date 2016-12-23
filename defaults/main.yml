@@ -1,14 +1,36 @@
 ---
+# pm2_cmd:
+#   - run: sendSignal             # pm2 command name
+#     args: SIGUSR2 my-app        # optional arguements to pass
+#     path: /var/www/myapp        # optional chdir path
+#     ignore_errors: yes          # optional don't fail on pm2 errors
+#     env:                        # optional environment settings
+#       NODE_ENV: production
 # pm2_apps:
 #   - run: pm2.json               # you can also run a .js file like app.js
+#     cmd: start                  # optional command to run on the app
 #     args: --name console_error  # optional arguements to pass i.e. to app.js
 #     path: /var/www/myapp        # optional chdir path
 #     env:                        # optional environment settings
 #       NODE_ENV: production
 #
 
+
+# list of commands to run
+# note: these will be executed before managing apps
+pm2_cmds:
+  # note: delete all apps initially on every run so only configured apps exist
+  - run: delete all
+# default env to run on cmds
+pm2_cmds_default_env: {}
 # list of paths to JSON app declarations
 pm2_apps: []
+# default env to run on apps
+pm2_apps_default_env: {}
+# default command to run on apps
+pm2_apps_default_cmd: start
+# delete all initially on every run
+pm2_apps_delete_all: yes
 # service name for startup system
 pm2_service_name: pm2-init.sh
 # start on boot

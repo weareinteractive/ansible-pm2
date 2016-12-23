@@ -23,7 +23,7 @@
     pm2_cmds:
       - run: delete
         args: console_error
-        #ignore_errors: yes
+        ignore_errors: yes
     pm2_apps:
       - run: apps.json
         path: "/etc/ansible/roles/weareinteractive.pm2/tests"

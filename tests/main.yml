@@ -1,6 +1,7 @@
 ---
 
 - hosts: all
+  become: yes
   # pre_tasks for installing dependencies for running the tests within docker
   pre_tasks:
     - name: Downloading install script

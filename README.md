@@ -46,16 +46,38 @@ Here is a list of all the default variables for this role, which are also availa
 
 ```yaml
 ---
+# pm2_cmd:
+#   - run: sendSignal             # pm2 command name
+#     args: SIGUSR2 my-app        # optional arguements to pass
+#     path: /var/www/myapp        # optional chdir path
+#     ignore_errors: yes          # optional don't fail on pm2 errors
+#     env:                        # optional environment settings
+#       NODE_ENV: production
 # pm2_apps:
 #   - run: pm2.json               # you can also run a .js file like app.js
+#     cmd: start                  # optional command to run on the app
 #     args: --name console_error  # optional arguements to pass i.e. to app.js
 #     path: /var/www/myapp        # optional chdir path
 #     env:                        # optional environment settings
 #       NODE_ENV: production
 #
 
+
+# list of commands to run
+# note: these will be executed before managing apps
+pm2_cmds:
+  # note: delete all apps initially on every run so only configured apps exist
+  - run: delete all
+# default env to run on cmds
+pm2_cmds_default_env: {}
 # list of paths to JSON app declarations
 pm2_apps: []
+# default env to run on apps
+pm2_apps_default_env: {}
+# default command to run on apps
+pm2_apps_default_cmd: start
+# delete all initially on every run
+pm2_apps_delete_all: yes
 # service name for startup system
 pm2_service_name: pm2-init.sh
 # start on boot
@@ -86,6 +108,10 @@ These are the handlers that are defined in `handlers/main.yml`.
     state: reloaded
   when: pm2_service_state != 'stopped'
 
+- name: update pm2
+  shell: pm2 updatePM2
+  when: pm2_service_state != 'stopped'
+
 ```
 
 
@@ -106,20 +132,33 @@ This is an example playbook:
         mode: "0777"
     - name: Installing sources
       command: /tmp/setup_nodejs
+      args:
+        creates: /usr/local/bin/node
     - name: Installing packages
-      action: "{{ ansible_pkg_mgr }} pkg=nodejs state=present"
+      action: "{{ ansible_pkg_mgr }}"
+      args:
+        pkg: nodejs
+        state: present
   roles:
     - weareinteractive.pm2
   vars:
+    pm2_cmds:
+      - run: delete
+        args: console_error
+        #ignore_errors: yes
     pm2_apps:
       - run: apps.json
         path: "/etc/ansible/roles/weareinteractive.pm2/tests"
+        cmd: startOrGracefulReload
       - run: console_error.js
         args: --name console_error
         path: "/etc/ansible/roles/weareinteractive.pm2/tests/apps"
+        cmd: start
         env:
           NODE_ENV: dev
-    pm2_startup: ubuntu
+    pm2_service_name: pm2
+    pm2_apps_default_env:
+      NODE_ENV: production
 
 ```
 

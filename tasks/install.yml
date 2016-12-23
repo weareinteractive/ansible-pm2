@@ -5,6 +5,7 @@
     name: pm2
     global: yes
     version: "{{ pm2_version | default(omit) }}"
+  notify: update pm2
 
 - name: Installing startup script
   command: "pm2 startup"

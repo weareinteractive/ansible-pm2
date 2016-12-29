@@ -7,6 +7,8 @@
 
 - name: Starting apps
   environment: "{{ item.env | default({}) }}"
+  become_user: "{{ pm2_user }}"
+  become: yes
   shell: "pm2 start {{ item.run }} {{ item.args | default() }}"
   args:
     chdir: "{{ item.path | default(omit) }}"

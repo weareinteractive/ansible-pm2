@@ -1,3 +1,15 @@
+<a name="2.2.0"></a>
+## 2.2.0 (2017-01-04)
+
+
+#### Features
+
+*   add pm2_user ([e031ec57](https://github.com/weareinteractive/ansible-pm2/commit/e031ec57b17d6915605b3288ee81959b34c8341a))
+*   improve app management ([0c51521e](https://github.com/weareinteractive/ansible-pm2/commit/0c51521e7fc3c57d0f16450014798ba67bb74975))
+*   add pm2 updtePM2 handler ([e903eba2](https://github.com/weareinteractive/ansible-pm2/commit/e903eba27e2661d22ffc426aa5fe951d8a3c92f2))
+
+
+
 <a name="2.1.0"></a>
 ## 2.1.0 (2016-09-09)
 

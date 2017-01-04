@@ -86,6 +86,8 @@ pm2_service_enabled: yes
 pm2_service_state: started
 # version
 pm2_version:
+# user to run pm2 commands
+pm2_user: "{{ ansible_user_id }}"
 
 ```
 
@@ -123,6 +125,7 @@ This is an example playbook:
 ---
 
 - hosts: all
+  become: yes
   # pre_tasks for installing dependencies for running the tests within docker
   pre_tasks:
     - name: Downloading install script
@@ -142,10 +145,11 @@ This is an example playbook:
   roles:
     - weareinteractive.pm2
   vars:
+    #pm2_user: vagrant
     pm2_cmds:
       - run: delete
         args: console_error
-        #ignore_errors: yes
+        ignore_errors: yes
     pm2_apps:
       - run: apps.json
         path: "/etc/ansible/roles/weareinteractive.pm2/tests"

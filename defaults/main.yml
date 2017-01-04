@@ -39,3 +39,5 @@ pm2_service_enabled: yes
 pm2_service_state: started
 # version
 pm2_version:
+# user to run pm2 commands
+pm2_user: "{{ ansible_user_id }}"

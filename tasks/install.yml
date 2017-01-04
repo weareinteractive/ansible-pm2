@@ -8,4 +8,6 @@
   notify: update pm2
 
 - name: Installing startup script
-  command: "pm2 startup"
+  become_user: "{{ pm2_user }}"
+  become: yes
+  command: "pm2 startup -u {{ pm2_user }}"

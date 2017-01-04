@@ -21,6 +21,7 @@
   roles:
     - weareinteractive.pm2
   vars:
+    #pm2_user: vagrant
     pm2_cmds:
       - run: delete
         args: console_error

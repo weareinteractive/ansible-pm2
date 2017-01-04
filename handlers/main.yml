@@ -11,3 +11,7 @@
     name: "{{ pm2_service_name }}"
     state: reloaded
   when: pm2_service_state != 'stopped'
+
+- name: update pm2
+  shell: pm2 updatePM2
+  when: pm2_service_state != 'stopped'

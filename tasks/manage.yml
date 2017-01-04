@@ -1,13 +1,22 @@
 ---
 
-- name: Deleting all apps
-  shell: pm2 delete all
-  register: command_result
-  failed_when: "'[ERROR]' in command_result.stderr"
-
-- name: Starting apps
-  environment: "{{ item.env | default({}) }}"
-  shell: "pm2 start {{ item.run }} {{ item.args | default() }}"
+- name: Executing commands
+  environment: "{{ item.env | default(pm2_cmds_default_env) }}"
+  shell: "pm2 {{ item.run }} {{ item.args | default() }}"
+  register: pm2_cmd_result
   args:
     chdir: "{{ item.path | default(omit) }}"
+  failed_when: "item.ignore_errors|default(false) == false and ('[ERROR]' in pm2_cmd_result.stderr)"
+  # ignore_errors: "item.ignore_errors|default(false)" this doesn't work!?
+  with_items: "{{ pm2_cmds }}"
+
+- name: Managing apps
+  become_user: "{{ pm2_user }}"
+  become: yes
+  environment: "{{ item.env | default(pm2_apps_default_env) }}"
+  shell: "pm2 {{ item.cmd | default(pm2_apps_default_cmd) }} {{ item.run }} {{ item.args | default() }}"
+  register: pm2_app_result
+  args:
+    chdir: "{{ item.path | default(omit) }}"
+  failed_when: "'[ERROR]' in pm2_app_result.stderr"
   with_items: "{{ pm2_apps }}"

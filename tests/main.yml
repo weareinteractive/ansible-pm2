@@ -1,6 +1,7 @@
 ---
 
 - hosts: all
+  become: yes
   # pre_tasks for installing dependencies for running the tests within docker
   pre_tasks:
     - name: Downloading install script
@@ -10,17 +11,31 @@
         mode: "0777"
     - name: Installing sources
       command: /tmp/setup_nodejs
+      args:
+        creates: /usr/local/bin/node
     - name: Installing packages
-      action: "{{ ansible_pkg_mgr }} pkg=nodejs state=present"
+      action: "{{ ansible_pkg_mgr }}"
+      args:
+        pkg: nodejs
+        state: present
   roles:
     - weareinteractive.pm2
   vars:
+    #pm2_user: vagrant
+    pm2_cmds:
+      - run: delete
+        args: console_error
+        ignore_errors: yes
     pm2_apps:
       - run: apps.json
         path: "/etc/ansible/roles/weareinteractive.pm2/tests"
+        cmd: startOrGracefulReload
       - run: console_error.js
         args: --name console_error
         path: "/etc/ansible/roles/weareinteractive.pm2/tests/apps"
+        cmd: start
         env:
           NODE_ENV: dev
-    pm2_startup: ubuntu
+    pm2_service_name: pm2
+    pm2_apps_default_env:
+      NODE_ENV: production

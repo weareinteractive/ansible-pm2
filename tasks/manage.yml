@@ -1,6 +1,8 @@
 ---
 
 - name: Executing commands
+  become_user: "{{ pm2_user }}"
+  become: yes
   environment: "{{ item.env | default(pm2_cmds_default_env) }}"
   shell: "pm2 {{ item.run }} {{ item.args | default() }}"
   register: pm2_cmd_result

@@ -1,3 +1,13 @@
+<a name="2.3.1"></a>
+### 2.3.1 (2017-06-07)
+
+
+#### Bug Fixes
+
+*   fix test failure ([9599b73e](https://github.com/weareinteractive/ansible-pm2/commit/9599b73e98952237655b73819dd047b13f484a69))
+
+
+
 <a name="2.3.0"></a>
 ## 2.3.0 (2017-06-07)
 

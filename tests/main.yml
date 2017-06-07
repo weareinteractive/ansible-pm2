@@ -36,6 +36,6 @@
         cmd: start
         env:
           NODE_ENV: dev
-    pm2_service_name: pm2
+    pm2_service_name: pm2-root
     pm2_apps_default_env:
       NODE_ENV: production

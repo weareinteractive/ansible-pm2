@@ -1,3 +1,13 @@
+<a name="2.3.0"></a>
+## 2.3.0 (2017-06-07)
+
+
+#### Features
+
+*   add pm2 user to manage commands ([de6398e4](https://github.com/weareinteractive/ansible-pm2/commit/de6398e4c8ca576670d0a29920f04dfd2297ab13))
+
+
+
 <a name="2.2.0"></a>
 ## 2.2.0 (2017-01-04)
 

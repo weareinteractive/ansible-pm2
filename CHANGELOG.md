@@ -1,3 +1,13 @@
+<a name="2.3.2"></a>
+### 2.3.2 (2017-06-09)
+
+
+#### Features
+
+*   improve error detection ([84ee84da](https://github.com/weareinteractive/ansible-pm2/commit/84ee84dae05cce71217c5f7643c39d6be635bdeb))
+
+
+
 <a name="2.3.1"></a>
 ### 2.3.1 (2017-06-07)
 

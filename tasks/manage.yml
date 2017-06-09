@@ -20,5 +20,5 @@
   register: pm2_app_result
   args:
     chdir: "{{ item.path | default(omit) }}"
-  failed_when: "'[ERROR]' in pm2_app_result.stderr"
+  failed_when: "pm2_app_result.stderr is defined and pm2_app_result.stderr.find('[ERROR]') != -1"
   with_items: "{{ pm2_apps }}"

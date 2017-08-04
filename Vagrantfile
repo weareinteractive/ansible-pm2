@@ -8,6 +8,10 @@ Vagrant.configure("2") do |config|
     instance.vm.box = 'ubuntu/xenial64'
   end
 
+  config.vm.define 'stretch' do |instance|
+    instance.vm.box = 'debian/stretch64'
+  end
+
   config.vm.provision "shell", inline: "sudo apt-get update"
   config.vm.provision "shell", inline: "sudo apt-get install -y python"
   config.vm.synced_folder '.', '/etc/ansible/roles/weareinteractive.pm2'

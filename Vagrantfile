@@ -3,12 +3,13 @@
 
 Vagrant.configure("2") do |config|
   config.vbguest.no_remote = true
-  config.vbguest.auto_update = false
 
-  config.vm.define 'trusty' do |instance|
-    instance.vm.box = 'ubuntu/trusty64'
+  config.vm.define 'xenial' do |instance|
+    instance.vm.box = 'ubuntu/xenial64'
   end
 
+  config.vm.provision "shell", inline: "sudo apt-get update"
+  config.vm.provision "shell", inline: "sudo apt-get install -y python"
   config.vm.synced_folder '.', '/etc/ansible/roles/weareinteractive.pm2'
 
   # View the documentation for the provider you're using for more

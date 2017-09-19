@@ -41,3 +41,6 @@ pm2_service_state: started
 pm2_version:
 # user to run pm2 commands
 pm2_user: "{{ ansible_user_id }}"
+# default post command to run on apps
+pm2_apps_post_cmd: []
+pm2_apps_save: save

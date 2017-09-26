@@ -22,3 +22,14 @@
     chdir: "{{ item.path | default(omit) }}"
   failed_when: "pm2_app_result.stderr is defined and pm2_app_result.stderr.find('[ERROR]') != -1"
   with_items: "{{ pm2_apps }}"
+
+- name: Saving the state of the apps
+  become_user: "{{ pm2_user }}"
+  become: yes
+  environment: "{{ item.env | default(pm2_apps_default_env) }}"
+  shell: "pm2 {{ item.cmd | default(pm2_apps_save) }} "
+  register: pm2_app_save_result
+  args:
+    chdir: "{{ item.path | default(omit) }}"
+  failed_when: "pm2_app_result.stderr is defined and pm2_app_result.stderr.find('[ERROR]') != -1"
+  with_items: "{{ pm2_apps_post_cmd }}"

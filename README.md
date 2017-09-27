@@ -46,7 +46,7 @@ Here is a list of all the default variables for this role, which are also availa
 
 ```yaml
 ---
-# pm2_cmd:
+# pm2_cmds:
 #   - run: sendSignal             # pm2 command name
 #     args: SIGUSR2 my-app        # optional arguements to pass
 #     path: /var/www/myapp        # optional chdir path
@@ -60,6 +60,13 @@ Here is a list of all the default variables for this role, which are also availa
 #     path: /var/www/myapp        # optional chdir path
 #     env:                        # optional environment settings
 #       NODE_ENV: production
+# pm2_post_cmds:
+#   - run: save                   # pm2 command name
+#     args:                       # optional arguements to pass
+#     path: /var/www/myapp        # optional chdir path
+#     ignore_errors: yes          # optional don't fail on pm2 errors
+#     env:                        # optional environment settings
+#       NODE_ENV: production
 #
 
 
@@ -70,6 +77,11 @@ pm2_cmds:
   - run: delete all
 # default env to run on cmds
 pm2_cmds_default_env: {}
+# list of post commands to run
+# note: these will be executed after managing apps
+pm2_post_cmds: []
+# default env to run on post cmds
+pm2_post_cmds_default_env: {}
 # list of paths to JSON app declarations
 pm2_apps: []
 # default env to run on apps
@@ -111,7 +123,7 @@ These are the handlers that are defined in `handlers/main.yml`.
   when: pm2_service_state != 'stopped'
 
 - name: update pm2
-  shell: pm2 updatePM2
+  shell: pm2 update
   when: pm2_service_state != 'stopped'
 
 ```
@@ -160,7 +172,7 @@ This is an example playbook:
         cmd: start
         env:
           NODE_ENV: dev
-    pm2_service_name: pm2
+    pm2_service_name: pm2-root
     pm2_apps_default_env:
       NODE_ENV: production
 

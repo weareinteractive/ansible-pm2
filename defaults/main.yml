@@ -1,5 +1,5 @@
 ---
-# pm2_cmd:
+# pm2_cmds:
 #   - run: sendSignal             # pm2 command name
 #     args: SIGUSR2 my-app        # optional arguements to pass
 #     path: /var/www/myapp        # optional chdir path
@@ -13,6 +13,13 @@
 #     path: /var/www/myapp        # optional chdir path
 #     env:                        # optional environment settings
 #       NODE_ENV: production
+# pm2_post_cmds:
+#   - run: save                   # pm2 command name
+#     args:                       # optional arguements to pass
+#     path: /var/www/myapp        # optional chdir path
+#     ignore_errors: yes          # optional don't fail on pm2 errors
+#     env:                        # optional environment settings
+#       NODE_ENV: production
 #
 
 
@@ -23,6 +30,11 @@ pm2_cmds:
   - run: delete all
 # default env to run on cmds
 pm2_cmds_default_env: {}
+# list of post commands to run
+# note: these will be executed after managing apps
+pm2_post_cmds: []
+# default env to run on post cmds
+pm2_post_cmds_default_env: {}
 # list of paths to JSON app declarations
 pm2_apps: []
 # default env to run on apps

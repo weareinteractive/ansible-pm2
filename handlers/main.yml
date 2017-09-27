@@ -13,5 +13,5 @@
   when: pm2_service_state != 'stopped'
 
 - name: update pm2
-  shell: pm2 updatePM2
+  shell: pm2 update
   when: pm2_service_state != 'stopped'

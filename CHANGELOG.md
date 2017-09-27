@@ -1,3 +1,13 @@
+<a name="2.4.0"></a>
+## 2.4.0 (2017-09-27)
+
+
+#### Features
+
+*   add pm2 post commands ([05d61494](https://github.com/weareinteractive/ansible-pm2/commit/05d6149406813f94b7a39d6464ab3dd2bc1831cd))
+
+
+
 <a name="2.3.2"></a>
 ### 2.3.2 (2017-06-09)
 

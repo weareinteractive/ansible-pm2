@@ -43,13 +43,17 @@ pm2_apps_default_env: {}
 pm2_apps_default_cmd: start
 # delete all initially on every run
 pm2_apps_delete_all: yes
-# service name for startup system
-pm2_service_name: pm2-init.sh
+# install upstart
+pm2_upstart: yes
 # start on boot
 pm2_service_enabled: yes
+# service name for startup system
+pm2_service_name: pm2-init.sh
 # current state: started, stopped
 pm2_service_state: started
 # version
 pm2_version:
 # user to run pm2 commands
 pm2_user: "{{ ansible_user_id }}"
+# startup platform
+pm2_platform:

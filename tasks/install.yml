@@ -14,4 +14,5 @@
   register: pm2_user_home
 
 - name: Installing startup script
-  command: "pm2 startup -u {{ pm2_user }} --hp {{ pm2_user_home.stdout }}"
+  command: "pm2 startup {{ pm2_platform }} -u {{ pm2_user }} --hp {{ pm2_user_home.stdout }}"
+  when: pm2_upstart

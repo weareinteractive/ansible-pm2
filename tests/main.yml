@@ -4,24 +4,20 @@
   become: yes
   # pre_tasks for installing dependencies for running the tests within docker
   pre_tasks:
-    - name: Downloading install script
-      get_url:
-        url: http://deb.nodesource.com/setup_5.x
-        dest: /tmp/setup_nodejs
-        mode: "0777"
-    - name: Installing sources
-      command: /tmp/setup_nodejs
-      args:
-        creates: /usr/local/bin/node
-    - name: Installing packages
-      action: "{{ ansible_pkg_mgr }}"
-      args:
-        pkg: nodejs
+    - package:
+        name: nodejs
         state: present
   roles:
     - weareinteractive.pm2
   vars:
+    # For vagrant
+    #pm2_upstart: yes
     #pm2_user: vagrant
+    #pm2_service_name: pm2-vagrant
+    # For docker
+    pm2_user: root
+    pm2_upstart: no # no service support within docker
+    # Common
     pm2_cmds:
       - run: delete
         args: console_error
@@ -36,6 +32,5 @@
         cmd: start
         env:
           NODE_ENV: dev
-    pm2_service_name: pm2-root
     pm2_apps_default_env:
       NODE_ENV: production

@@ -3,7 +3,7 @@ galaxy_info:
   author: franklin
   company: We Are Interactive
   description: Installs pm2 and manages apps
-  min_ansible_version: 2.0
+  min_ansible_version: 2.4
   license: MIT
   # Optionally specify the branch Galaxy will use when accessing the GitHub
   # repo for this role. During role install, if no tags are available,
@@ -18,9 +18,9 @@ galaxy_info:
   # platform on this list, let us know and we'll get it added!
   #
   platforms:
-  #- name: EL
-  #  versions:
-  #  - all
+  - name: EL
+    versions:
+    - all
   #  - 5
   #  - 6
   #  - 7
@@ -123,7 +123,7 @@ galaxy_info:
   #  - jessie
   #  - lenny
   #  - squeeze
-  #  - wheezy  categories:
+  #  - wheezy
   #
   # List tags for your role here, one per line. A tag is
   # a keyword that describes and categorizes the role.

@@ -1,20 +1,20 @@
 ---
 
-- include: install.yml
+- import_tasks: install.yml
   tags:
     - web
     - pm2
     - install
     - pm2-install
 
-- include: manage.yml
+- import_tasks: manage.yml
   tags:
     - web
     - pm2
     - manage
     - pm2-manage
 
-- include: service.yml
+- import_tasks: service.yml
   tags:
     - web
     - pm2

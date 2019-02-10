@@ -33,7 +33,7 @@ $ git clone https://github.com/weareinteractive/ansible-pm2.git weareinteractive
 
 ## Dependencies
 
-* Ansible >= 2.0
+* Ansible >= 2.4
 * installed nodejs i.e. with [weareinteractive.nodejs](https://github.com/weareinteractive/ansible-nodejs)
 
 **Note:**
@@ -90,16 +90,20 @@ pm2_apps_default_env: {}
 pm2_apps_default_cmd: start
 # delete all initially on every run
 pm2_apps_delete_all: yes
-# service name for startup system
-pm2_service_name: pm2-init.sh
+# install upstart
+pm2_upstart: yes
 # start on boot
 pm2_service_enabled: yes
+# service name for startup system
+pm2_service_name: pm2-init.sh
 # current state: started, stopped
 pm2_service_state: started
 # version
 pm2_version:
 # user to run pm2 commands
 pm2_user: "{{ ansible_user_id }}"
+# startup platform
+pm2_platform:
 
 ```
 
@@ -114,17 +118,17 @@ These are the handlers that are defined in `handlers/main.yml`.
   service:
     name: "{{ pm2_service_name }}"
     state: restarted
-  when: pm2_service_state != 'stopped'
+  when: pm2_upstart and pm2_service_state != 'stopped'
 
 - name: reload pm2
   service:
     name: "{{ pm2_service_name }}"
     state: reloaded
-  when: pm2_service_state != 'stopped'
+  when: pm2_upstart and pm2_service_state != 'stopped'
 
 - name: update pm2
   shell: pm2 update
-  when: pm2_service_state != 'stopped'
+  when: pm2_upstart and pm2_service_state != 'stopped'
 
 ```
 
@@ -138,26 +142,17 @@ This is an example playbook:
 
 - hosts: all
   become: yes
-  # pre_tasks for installing dependencies for running the tests within docker
-  pre_tasks:
-    - name: Downloading install script
-      get_url:
-        url: http://deb.nodesource.com/setup_5.x
-        dest: /tmp/setup_nodejs
-        mode: "0777"
-    - name: Installing sources
-      command: /tmp/setup_nodejs
-      args:
-        creates: /usr/local/bin/node
-    - name: Installing packages
-      action: "{{ ansible_pkg_mgr }}"
-      args:
-        pkg: nodejs
-        state: present
   roles:
     - weareinteractive.pm2
   vars:
+    # For vagrant
+    #pm2_upstart: yes
     #pm2_user: vagrant
+    #pm2_service_name: pm2-vagrant
+    # For docker
+    pm2_user: root
+    pm2_upstart: no # no service support within docker
+    # Common
     pm2_cmds:
       - run: delete
         args: console_error
@@ -172,7 +167,6 @@ This is an example playbook:
         cmd: start
         env:
           NODE_ENV: dev
-    pm2_service_name: pm2-root
     pm2_apps_default_env:
       NODE_ENV: production
 

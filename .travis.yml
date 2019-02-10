@@ -11,36 +11,22 @@ env:
       distribution_version: "18.04"
       init: /lib/systemd/systemd
       run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-      before_test: |
-        apt-get update && \
-        apt-get install -y gnupg python curl && \
-        curl -sL http://deb.nodesource.com/setup_11.x | bash - && \
-        apt-get install -y nodejs
+      before_test: "apt-get update && apt-get install -y gnupg python curl && curl -sL http://deb.nodesource.com/setup_11.x | bash - && apt-get install -y nodejs"
     - distribution: Ubuntu
       distribution_version: "16.04"
       init: /lib/systemd/systemd
       run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-      before_test: |
-        apt-get update && \
-        apt-get install -y gnupg python curl && \
-        curl -sL http://deb.nodesource.com/setup_11.x | bash - && \
-        apt-get install -y nodejs
+      before_test: "apt-get update && apt-get install -y gnupg python curl && curl -sL http://deb.nodesource.com/setup_11.x | bash - && apt-get install -y nodejs"
     - distribution: Debian
       distribution_version: stretch
       init: /lib/systemd/systemd
       run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-      before_test: |
-        apt-get update && \
-        apt-get install -y gnupg python curl && \
-        curl -sL http://deb.nodesource.com/setup_11.x | bash - && \
-        apt-get install -y nodejs
+      before_test: "apt-get update && apt-get install -y gnupg python curl && curl -sL http://deb.nodesource.com/setup_11.x | bash - && apt-get install -y nodejs"
     - distribution: EL
       distribution_version: "7"
       init: /usr/lib/systemd/systemd
       run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-      before_test: |
-        curl -sL https://rpm.nodesource.com/setup_11.x | bash - && \
-        yum install -y nodejs
+      before_test: "curl -sL https://rpm.nodesource.com/setup_11.x | bash - && yum install -y nodejs"
 
 before_install:
   - sudo apt-get update
@@ -54,11 +40,6 @@ script:
 
   # Print ansible version
   - docker exec -t "$(cat ${container_id})" env TERM=xterm ansible --version
-
-  # Install dependencies
-  - docker exec -t "$(cat ${container_id})" env TERM=xterm echo "${before_test}"
-  # Install dependencies
-  - docker exec -t "$(cat ${container_id})" env TERM=xterm echo '${before_test}'
 
   # Install dependencies
   - docker exec -t "$(cat ${container_id})" env TERM=xterm sh -c "${before_test}"

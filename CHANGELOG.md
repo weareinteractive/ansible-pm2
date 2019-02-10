@@ -1,3 +1,14 @@
+<a name="2.5.0"></a>
+## 2.5.0 (2019-02-10)
+
+
+#### Features
+
+*   update tasks for 2.4 ([6a833b62](https://github.com/weareinteractive/ansible-pm2/commit/6a833b62ca167b9fc2a2dd9c0dbd2e70b3c7106d))
+*   add pm2_upstart for docker tests ([ff056458](https://github.com/weareinteractive/ansible-pm2/commit/ff056458738039d8d51f88ad0ac5b630fb939a5e))
+
+
+
 <a name="2.4.0"></a>
 ## 2.4.0 (2017-09-27)
 

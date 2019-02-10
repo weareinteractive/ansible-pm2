@@ -11,7 +11,7 @@ env:
       distribution_version: "18.04"
       init: /lib/systemd/systemd
       run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-      before_test: >
+      before_test: |
         apt-get update && \
         apt-get install -y gnupg python curl && \
         curl -sL http://deb.nodesource.com/setup_11.x | bash - && \
@@ -20,7 +20,7 @@ env:
       distribution_version: "16.04"
       init: /lib/systemd/systemd
       run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-      before_test: >
+      before_test: |
         apt-get update && \
         apt-get install -y gnupg python curl && \
         curl -sL http://deb.nodesource.com/setup_11.x | bash - && \
@@ -29,7 +29,7 @@ env:
       distribution_version: stretch
       init: /lib/systemd/systemd
       run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-      before_test: >
+      before_test: |
         apt-get update && \
         apt-get install -y gnupg python curl && \
         curl -sL http://deb.nodesource.com/setup_11.x | bash - && \
@@ -38,7 +38,7 @@ env:
       distribution_version: "7"
       init: /usr/lib/systemd/systemd
       run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-      before_test: >
+      before_test: |
         curl -sL https://rpm.nodesource.com/setup_11.x | bash - && \
         yum install -y nodejs
 

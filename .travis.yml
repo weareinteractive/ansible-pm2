@@ -20,7 +20,6 @@ env:
       distribution_version: "16.04"
       init: /lib/systemd/systemd
       run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-      before_test: curl -sL http://deb.nodesource.com/setup_11.x | bash -
       before_test: >
         apt-get update && \
         apt-get install -y gnupg python curl && \

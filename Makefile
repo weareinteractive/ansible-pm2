@@ -4,9 +4,8 @@ ROLE_PATH=/etc/ansible/roles/$(ROLE_NAME)
 TEST_VERSION=ansible --version
 TEST_SYNTAX=ansible-playbook -v -i 'localhost,' -c local $(ROLE_PATH)/tests/main.yml --syntax-check
 TEST_PLAYBOOK=ansible-playbook -vvvv -i 'localhost,' -c local $(ROLE_PATH)/tests/main.yml
-TEST_CMD=$(TEST_DEPS); $(TEST_VERSION); $(TEST_SYNTAX); $(TEST_PLAYBOOK)
-
-ubuntu%: TEST_DEPS=curl -sL https://deb.nodesource.com/setup_11.x | bash - && apt-get update && apt-get install -y nodejs npm
+TEST_IDEMPOTENT=$(TEST_PLAYBOOK) | grep -q 'failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
+TEST_CMD=$(TEST_VERSION); $(TEST_SYNTAX); $(TEST_PLAYBOOK); $(TEST_IDEMPOTENT)
 
 ubuntu18.04: dist=ubuntu-18.04
 ubuntu18.04: .run
@@ -14,12 +13,8 @@ ubuntu18.04: .run
 ubuntu16.04: dist=ubuntu-16.04
 ubuntu16.04: .run
 
-centos%: TEST_DEPS=curl -sL https://deb.nodesource.com/setup_11.x | bash - && yum install -y nodejs npm
-
 centos7: dist=centos-7
 centos7: .run
-
-debian%: TEST_DEPS=curl -sL https://deb.nodesource.com/setup_11.x | bash - && apt-get update && apt-get install -y nodejs npm
 
 debian9: dist=debian-9
 debian9: .run

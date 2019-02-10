@@ -4,6 +4,15 @@
   become: yes
   # pre_tasks for installing dependencies for running the tests within docker
   pre_tasks:
+    - name: Downloading install script
+      get_url:
+        url: http://deb.nodesource.com/setup_11.x
+        dest: /tmp/setup_nodejs
+        mode: "0777"
+    - name: Installing sources
+      command: /tmp/setup_nodejs
+      args:
+        creates: /usr/local/bin/node
     - package:
         name: nodejs
         state: present

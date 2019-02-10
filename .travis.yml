@@ -8,15 +8,21 @@ env:
     - role: weareinteractive.pm2
   matrix:
     - distribution: Ubuntu
+      distribution_version: "18.04"
+      init: /lib/systemd/systemd
+      run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    - distribution: Ubuntu
       distribution_version: "16.04"
       init: /lib/systemd/systemd
       run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-      deps: curl -sL https://deb.nodesource.com/setup_11.x | bash - && apt-get update && apt-get install -y nodejs npm
-    - distribution: Ubuntu
-      distribution_version: "14.04"
-      init: /sbin/init
-      run_opts: ""
-      deps: curl -sL https://deb.nodesource.com/setup_11.x | bash - && apt-get update && apt-get install -y nodejs npm
+    - distribution: EL
+      distribution_version: "7"
+      init: /usr/lib/systemd/systemd
+      run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    - distribution: Debian
+      distribution_version: stretch
+      init: /lib/systemd/systemd
+      run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
 before_install:
   - sudo apt-get update
@@ -30,9 +36,6 @@ script:
 
   # Print ansible version
   - docker exec -t "$(cat ${container_id})" env TERM=xterm ansible --version
-
-  # Install dependencies
-  - docker exec --tty "$(cat ${container_id})" env TERM=xterm bash -c '${deps}'
 
   # Ansible syntax check.
   - docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/${role}/tests/main.yml --syntax-check

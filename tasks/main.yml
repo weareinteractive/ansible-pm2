@@ -7,16 +7,16 @@
     - install
     - pm2-install
 
-- import_tasks: manage.yml
-  tags:
-    - web
-    - pm2
-    - manage
-    - pm2-manage
-
 - import_tasks: service.yml
   tags:
     - web
     - pm2
     - service
     - pm2-service
+
+- import_tasks: manage.yml
+  tags:
+    - web
+    - pm2
+    - manage
+    - pm2-manage

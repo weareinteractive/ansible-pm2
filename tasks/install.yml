@@ -6,13 +6,3 @@
     global: yes
     version: "{{ pm2_version | default(omit) }}"
   notify: update pm2
-
-- name: Looking up user home
-  shell: >
-    egrep "^{{ pm2_user }}:" /etc/passwd | awk -F: '{ print $6 }'
-  changed_when: false
-  register: pm2_user_home
-
-- name: Installing startup script
-  command: "pm2 startup {{ pm2_platform }} -u {{ pm2_user }} --hp {{ pm2_user_home.stdout }}"
-  when: pm2_upstart

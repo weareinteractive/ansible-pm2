@@ -1,3 +1,13 @@
+<a name="2.5.1"></a>
+### 2.5.1 (2020-11-06)
+
+
+#### Bug Fixes
+
+*   move service configuration before management ([675b23f6](https://github.com/weareinteractive/ansible-pm2/commit/675b23f61f5a8f5ab9a8b1abcd29638c4c52fda2))
+
+
+
 <a name="2.5.0"></a>
 ## 2.5.0 (2019-02-10)
 
